@@ -2,6 +2,17 @@
 
 一个全面的多机构类型投资分析平台，支持公募基金、对冲基金、VC、PE、天使基金等全球资本的分析与配置建议。
 
+<div align="center">
+
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/Zeon7744/global-investment-mlp?style=social)](https://github.com/Zeon7744/global-investment-mlp)
+[![GitHub forks](https://img.shields.io/github/forks/Zeon7744/global-investment-mlp?style=social)](https://github.com/Zeon7744/global-investment-mlp/forks)
+
+</div>
+
+---
+
 ## 🚀 核心功能
 
 ### 1. 多机构类型支持
@@ -35,6 +46,8 @@
 - 动态权重调整
 - 市场周期适配
 
+---
+
 ## 📊 系统架构
 
 ```
@@ -52,11 +65,15 @@ global-investment-mlp/
 └── docs/                 # 文档
 ```
 
+---
+
 ## 🔧 安装依赖
 
 ```bash
 pip install numpy pandas scikit-learn scipy yfinance
 ```
+
+---
 
 ## 📈 快速开始
 
@@ -82,11 +99,15 @@ python main.py \
 python -m pytest test_*.py -v
 ```
 
+---
+
 ## 📋 输出报告
 
 分析完成后将生成：
 - `reports/investment_report_YYYYMMDD_HHMMSS.html` - 完整HTML报告
 - `reports/summary_YYYYMMDD.json` - JSON摘要
+
+---
 
 ## 🎯 核心指标
 
@@ -99,6 +120,8 @@ python -m pytest test_*.py -v
 | IC均值 | 因子信息系数 |
 | 多空收益 | 长短线差 |
 
+---
+
 ## 📊 压力测试情景
 
 - 2008年金融危机
@@ -106,6 +129,8 @@ python -m pytest test_*.py -v
 - 利率缓慢上升
 - 突然加息
 - 经济衰退
+
+---
 
 ## 🔮 未来规划
 
@@ -116,13 +141,38 @@ python -m pytest test_*.py -v
 - [ ] 支持Python API集成
 - [ ] 添加机器学习预测模块
 
+---
+
+## 💖 支持本项目
+
+如果这个项目对你有帮助，欢迎赞助支持：
+
+| 平台 | 链接 | 说明 |
+|------|------|------|
+| 🇨🇳 爱发电 | [afdian.com/@Zeon7744](https://afdian.com) | 支付宝/微信支付 |
+| 🌍 GitHub Sponsors | [github.com/sponsors/Zeon7744](https://github.com/sponsors) | PayPal/Stripe |
+| 📦 Gitee | [gitee.com/Zeon7744/global-investment-mlp](https://gitee.com) | 国内同步 |
+
+---
+
 ## 📄 许可证
 
 MIT License
 
+---
+
 ## 👥 作者
 
 Global Investment MLP Team
+
+---
+
+<div align="center">
+
+**开发者**: [Zeon7744](https://github.com/Zeon7744)  
+*全球资本投资分析*
+
+</div>
 
 ---
 
