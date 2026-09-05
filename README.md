@@ -1,12 +1,17 @@
 # global-investment-mlp
 
-> 多因子量化投资框架 — 美股/港股/加密货币
+> 多因子量化投资框架 — 四因子模型 · VaR/压力测试 · HTML报告
 
 [![GitHub Stars](https://img.shields.io/github/stars/Zeon7744/global-investment-mlp?style=social)](https://github.com/Zeon7744/global-investment-mlp)
 [![Gitee stars](https://gitee.com/Zeon7744/global-investment-mlp/badge/star.svg?theme=gvp)](https://gitee.com/Zeon7744/global-investment-mlp)
 [![GitCode stars](https://gitcode.com/Zeon7744/global-investment-mlp/stars/badge)](https://gitcode.com/Zeon7744/global-investment-mlp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-v0.1.0-blue)](https://github.com/Zeon7744/global-investment-mlp/releases/tag/v0.1.0)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)]()
+
+## 在线演示
+
+- [GitHub Pages](https://zeon7744.github.io/global-investment-mlp/)
 
 ## 简介
 
@@ -14,11 +19,11 @@
 
 ## 核心特性
 
-- **四类因子**: 动量、价值、质量、波动
+- **四类因子**: 动量(Momentum)、价值(Value)、质量(Quality)、波动(Volatility)
 - **风险调整选股模型**: Sharpe Ratio 优化
-- **压力测试与情景分析**: 模拟极端市场环境
-- **回测引擎支持**: 历史数据验证
+- **压力测试与情景分析**: VaR / CVaR / 极端市场环境模拟
 - **多市场适配**: 美股/港股/加密货币一键切换
+- **HTML 报告生成**: 自动输出投资分析报告
 
 ## 支持市场
 
