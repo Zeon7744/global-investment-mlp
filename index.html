@@ -1,1 +1,64 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Global Investment MLP - 全球宏观量化投资平台</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6}.container{max-width:800px;margin:0 auto;padding:40px 20px}.header{text-align:center;padding:60px 0;border-bottom:1px solid #21262d}h1{font-size:2.5em;margin-bottom:10px}.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0}.badge{background:#21262d;padding:4px 12px;border-radius:20px;font-size:0.85em}.accent{color:#3fb950}.desc{color:#8b949e;margin:20px 0;font-size:1.1em}.section{padding:40px 0;border-bottom:1px solid #21262d}h2{color:#58a6ff;margin-bottom:20px}.card{background:#161b22;border:1px solid #21262d;border-radius:8px;padding:20px;margin:15px 0}.card h3{color:#3fb950;margin-bottom:10px}.card p{color:#8b949e;font-size:0.9em}.links{display:flex;flex-wrap:wrap;gap:15px;margin:20px 0}.link{background:#21262d;padding:12px 20px;border-radius:8px;text-decoration:none;color:#58a6ff;border:1px solid #30363d;transition:all .2s}.link:hover{background:#30363d;border-color:#3fb950}.footer{text-align:center;padding:40px 0;color:#8b949e;font-size:0.9em}.btn{display:inline-block;background:#238636;color:#fff;padding:10px 24px;border-radius:6px;text-decoration:none;font-weight:600;margin:10px 5px}.btn:hover{background:#2ea043}.btn-secondary{background:#21262d;border:1px solid #30363d}.btn-secondary:hover{background:#30363d}</style></head><body><div class="container"><div class="header"><h1>Global <span class="accent">Investment</span> MLP</h1><div class="badges"><span class="badge">Python 3.8+</span><span class="badge">MIT License</span><span class="badge">v1.0.0</span><span class="badge accent">Multi-Factor Quant</span></div><p class="desc">全球宏观量化投资分析平台 — 多机构类型支持与风险预算分配</p><div style="margin-top:30px"><a class="btn" href="https://github.com/Zeon7744/global-investment-mlp">GitHub 仓库</a></div></div><div class="section"><h2>核心功能</h2><div class="card"><h3>多机构类型支持</h3><p>对冲基金、VC、PE、公募基金、主权财富基金、天使基金</p></div><div class="card"><h3>多因子量化模型</h3><p>8类因子体系：价值、成长、动量、质量、低波动、流动性、宏观、另类数据</p></div><div class="card"><h3>风险分析引擎</h3><p>VaR/CVaR计算 + 历史压力测试 + 风险预警系统</p></div></div><div class="section"><h2>支持本项目</h2><div class="links"><a class="link" href="https://afdian.com">☕ 爱发电</a><a class="link" href="https://github.com/sponsors/Zeon7744">⭐ GitHub Sponsors</a></div></div><div class="footer"><p>由 <a href="https://github.com/Zeon7744" style="color:#3fb950">Zeon7744</a> 维护<br>全球资本投资分析 | 免责声明：仅供研究学习</p></div></div></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>global-investment-mlp — 多因子量化投资框架</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6}.container{max-width:800px;margin:0 auto;padding:40px 20px}.header{text-align:center;padding:60px 0;border-bottom:1px solid #21262d}h1{font-size:2.5em;margin-bottom:10px}.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0}.badge{background:#21262d;padding:4px 12px;border-radius:20px;font-size:0.85em}.desc{color:#8b949e;margin:20px 0;font-size:1.1em}.section{padding:40px 0;border-bottom:1px solid #21262d}h2{color:#58a6ff;margin-bottom:20px}.card{background:#161b22;border:1px solid #21262d;border-radius:8px;padding:20px;margin:15px 0}.card h3{color:#58a6ff;margin-bottom:10px}.card p{color:#8b949e;font-size:0.9em}.links{display:flex;flex-wrap:wrap;gap:15px;margin:20px 0}.link{background:#21262d;padding:12px 20px;border-radius:8px;text-decoration:none;color:#58a6ff;border:1px solid #30363d;transition:all .2s}.link:hover{background:#30363d;border-color:#58a6ff}.footer{text-align:center;padding:40px 0;color:#8b949e;font-size:0.9em}.btn{display:inline-block;background:#238636;color:#fff;padding:10px 24px;border-radius:6px;text-decoration:none;font-weight:600;margin:10px 5px}.btn:hover{background:#2ea043}.btn-secondary{background:#21262d;border:1px solid #30363d}.btn-secondary:hover{background:#30363d}
+table{width:100%;border-collapse:collapse;margin:15px 0}td,th{padding:8px 12px;text-align:left;border-bottom:1px solid #21262d;font-size:0.9em}th{color:#8b949e}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>Global Investment MLP</h1>
+<div class="badges">
+<span class="badge">Python 3.9+</span>
+<span class="badge">MIT License</span>
+<span class="badge">v1.1.0</span>
+<span class="badge">Multi-Market</span>
+</div>
+<p class="desc">多因子量化投资框架 — 美股 / 港股 / 加密货币</p>
+<div style="margin-top:30px">
+<a class="btn" href="https://github.com/Zeon7744/global-investment-mlp">GitHub 仓库</a>
+<a class="btn btn-secondary" href="https://afdian.com/@Zeon7744">爱发电赞助</a>
+</div>
+</div>
+<div class="section">
+<h2>核心特性</h2>
+<div class="card"><h3>四类因子</h3><p>动量、价值、质量、波动因子组合选股</p></div>
+<div class="card"><h3>风险调整模型</h3><p>Sharpe Ratio 优化，风险调整后的选股策略</p></div>
+<div class="card"><h3>压力测试</h3><p>模拟极端市场环境的压力测试能力</p></div>
+<div class="card"><h3>三市场适配</h3><p>美股 (S&P 500)、港股 (恒生)、加密货币 (BTC/ETH)</p></div>
+</div>
+<div class="section">
+<h2>快速开始</h2>
+<pre style="background:#161b22;padding:16px;border-radius:8px;overflow-x:auto;font-size:0.85em"><code>git clone https://github.com/Zeon7744/global-investment-mlp.git
+cd global-investment-mlp
+pip install -r requirements.txt
+python main.py --market us --factor momentum</code></pre>
+</div>
+<div class="section">
+<h2>多平台镜像</h2>
+<div class="links">
+<a class="link" href="https://github.com/Zeon7744/global-investment-mlp">GitHub (主仓库)</a>
+<a class="link" href="https://gitee.com/Zeon7744/global-investment-mlp">Gitee</a>
+<a class="link" href="https://gitcode.com/Zeon7744/global-investment-mlp">GitCode</a>
+</div>
+</div>
+<div class="section">
+<h2>相关项目</h2>
+<div class="links">
+<a class="link" href="https://github.com/Zeon7744/baibai">🛠️ baibai MCP</a>
+<a class="link" href="https://github.com/Zeon7744/crypto-mlp-high-confidence">📊 加密货币预测</a>
+<a class="link" href="https://github.com/Zeon7744/dev-artifacts">🔧 开发工具箱</a>
+</div>
+</div>
+<div class="footer">
+<p>由 <a href="https://github.com/Zeon7744" style="color:#58a6ff">Zeon7744</a> 维护<br>量化投资 · 三平台同步</p>
+</div>
+</div>
+</body>
+</html>
