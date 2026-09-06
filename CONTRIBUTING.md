@@ -1,36 +1,30 @@
-# CONTRIBUTING
+# Contributing to baibai
 
-感谢你对 global-investment-mlp 的关注！以下是参与贡献的指南。
+Thank you for your interest in contributing!
 
-## 如何贡献
+## How to Contribute
 
-1. Fork 本仓库
-2. 创建特性分支: `git checkout -b feature/your-feature`
-3. 提交更改: `git commit -m 'Add your feature'`
-4. 推送分支: `git push origin feature/your-feature`
-5. 提交 Pull Request
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -am 'Add feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
 
-## 因子开发
+## Code Style
 
-- 新因子需在 `factors/` 目录实现
-- 每个因子需包含回测验证脚本
-- 提交前确保 Sharpe Ratio 符合预期
+- Follow PEP 8 for Python code
+- Use type hints where possible
+- Add docstrings to all public functions
 
-## 市场适配
+## Reporting Issues
 
-当前支持：
-- 美股 (S&P 500, Nasdaq)
-- 港股 (恒生指数成分)
-- 加密货币 (BTC, ETH, ALT)
+- Use the [Bug Report](../ISSUE_TEMPLATE/bug-report.md) template
+- Include version info and reproduction steps
+- Search existing issues first
 
-新增市场请在 `markets/` 目录添加配置。
+## Pull Request Guidelines
 
-## 报告问题
-
-请在 [Issues](https://github.com/Zeon7744/global-investment-mlp/issues) 中报告。
-
-## 赞助支持
-
-如果框架对你有帮助：
-- [爱发电](https://afdian.com/@Zeon7744)
-- [GitHub Sponsors](https://github.com/sponsors/Zeon7744)
+- Keep changes focused and minimal
+- Update documentation if needed
+- Add tests for new features
+- Reference related issues
