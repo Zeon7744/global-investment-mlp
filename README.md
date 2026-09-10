@@ -42,6 +42,10 @@ pip install -r requirements.txt
 python main.py --market us --factor momentum
 ```
 
+## 文档
+
+- [CHANGELOG.md](CHANGELOG.md) — 版本历史
+
 ## 多平台镜像
 
 | 平台 | 链接 |
@@ -74,6 +78,8 @@ python main.py --market us --factor momentum
 ## 贡献
 
 欢迎提交 Issue 和 Pull Request！详见 [CONTRIBUTING.md](CONTRIBUTING.md)
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 ---
 
