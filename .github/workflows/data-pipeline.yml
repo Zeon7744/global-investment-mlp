@@ -24,15 +24,3 @@ jobs:
           git config user.name "global-bot"; git config user.email "bot@example.com"
           git add reports/ && (git commit -m "chore(global-investment-mlp): 每日报告 $(date +%F)" || echo "no change"); git push
 
-  pages:
-    runs-on: ubuntu-latest
-    needs: refresh
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy reports
-        run: |
-          mkdir -p .github && echo 'global-investment-mlp' > .github/URL
-      - name: Publish to Pages
-        uses: actions/deploy-pages@v4
-        with:
-          page: web
