@@ -13,18 +13,8 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
       - run: pip install -r requirements.txt
-      - name: Refresh global data + report
-        run: |
-          python3 - <<'PY'
-          import os, json, datetime
-          # MVP 占位：接 yfinance/CoinGecko 拉全球行情喂 multi_factor_model
-          os.makedirs("reports", exist_ok=True)
-          day = datetime.date.today().isoformat()
-          payload = {"date": day, "signals": [], "note": "MVP 占位；接 yfinance 后填充全球多因子信号"}
-          json.dump(payload, open(f"reports/{day}.json","w",encoding="utf-8"), ensure_ascii=False, indent=2)
-          json.dump(payload, open("reports/latest.json","w",encoding="utf-8"), ensure_ascii=False, indent=2)
-          print("report @", day)
-          PY
+      - name: Refresh global data + report (yfinance，拉不到自动回退占位)
+        run: python refresh_report.py
       - name: Commit report
         run: |
           git config user.name "global-bot"; git config user.email "bot@example.com"
