@@ -5,6 +5,9 @@ on:
     - cron: '30 6 * * *'   # 北京时间 14:30（美股收盘后）
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -19,3 +22,11 @@ jobs:
         run: |
           git config user.name "global-bot"; git config user.email "bot@example.com"
           git add reports/ && (git commit -m "chore(global-investment-mlp): 每日报告 $(date +%F)" || echo "no change"); git push
+
+  pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/deploy-pages@v4
+        with:
+          page: web
