@@ -1,0 +1,17 @@
+# global-investment-mlp: CI 测试 job
+name: CI Test
+on:
+  push: {branches: [main], paths: ['*.py', 'requirements.txt', '.github/workflows/ci-test.yml']}
+  pull_request: {}
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -r requirements.txt
+      - name: Run test_all.py
+        run: python test_all.py
