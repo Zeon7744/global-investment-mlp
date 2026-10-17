@@ -4,6 +4,7 @@
 """
 
 import unittest
+import math
 import numpy as np
 import pandas as pd
 from pathlib import Path
@@ -140,6 +141,43 @@ class TestDataFetcher(unittest.TestCase):
         portfolio = generate_synthetic_portfolio(n_assets=10, n_days=300)
         self.assertEqual(portfolio.shape[0], 300)
         self.assertEqual(portfolio.shape[1], 10)
+
+    def test_fund_returns_compound_and_degrade(self):
+        """原理层：returns 用几何复利；长期样本不足时降级 None 而非越界/0"""
+        fetcher = GlobalFundDataFetcher()
+        # days=500 < 756，旧版 nav[-756] 会 IndexError；新版应降级 None
+        funds = fetcher.generate_fund_data('hedge', n_funds=3, days=500)
+        for fund in funds:
+            self.assertIsNone(fund['returns']['3y_annualized'])
+            self.assertIsNone(fund['returns']['5y_annualized'])
+            # 短期 1y 用几何复利，值有限
+            self.assertTrue(math.isfinite(fund['returns']['1y']))
+            # max_drawdown 用净值曲线几何计算，应在 [-1, 0] 区间
+            self.assertGreaterEqual(fund['risk_metrics']['max_drawdown'], -1.0)
+            self.assertLessEqual(fund['risk_metrics']['max_drawdown'], 0.0)
+
+    def test_cross_check_sources_no_data(self):
+        """原理层：QC 方法在多源/离线场景返回结构化结果（不抛异常）"""
+        fetcher = GlobalFundDataFetcher()
+        # 离线环境下 get_market_data_by_symbol 返回 None，cross_check 应优雅降级
+        res = fetcher.cross_check_sources('XLK', days=30)
+        self.assertIn('passed', res)
+        self.assertIn('issues', res)
+
+    def test_backfill_missing(self):
+        """原理层：缺失值前向填充 + 成交量填 0"""
+        fetcher = GlobalFundDataFetcher()
+        df = pd.DataFrame({
+            'Open': [10.0, None, 12.0],
+            'High': [11.0, None, 13.0],
+            'Low': [9.0, None, 11.0],
+            'Close': [10.5, None, 12.5],
+            'Volume': [1000, None, 1500],
+        })
+        out = fetcher.backfill_missing(df)
+        self.assertEqual(out['Close'].iloc[1], 10.5)  # ffill
+        self.assertEqual(out['Volume'].iloc[1], 0)      # volume 填 0
+        self.assertFalse(out[['Open','High','Low','Close','Volume']].isna().any().any())
 
 
 class TestReportGenerator(unittest.TestCase):

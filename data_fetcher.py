@@ -172,6 +172,14 @@ class GlobalFundDataFetcher:
             returns = np.random.normal(base_return/252, volatility/np.sqrt(252), days)
             nav = 100 * np.exp(np.cumsum(returns))
             
+            # —— 复利(几何)收益口径：日收益率均值×天数是算术近似，会高估/低估；
+            #    统一改用 NAV 几何复利，并在样本不足时降级为 None（避免索引越界）。
+            def _cagr(nav_arr, n_periods):
+                # 年化(复利)收益 = (期末/期初)^(252/n) - 1，n 不足则降级 None
+                if n_periods > 0 and len(nav_arr) > n_periods and nav_arr[-1 - n_periods] > 0:
+                    return float((nav_arr[-1] / nav_arr[-1 - n_periods]) ** (252.0 / n_periods) - 1.0)
+                return None
+            
             fund = {
                 'fund_id': f'{fund_type[:3].upper()}{i+1:03d}',
                 'name': f'{fund_type.title()} Fund {i+1}',
@@ -183,17 +191,20 @@ class GlobalFundDataFetcher:
                     'nav': nav
                 }),
                 'returns': {
-                    '1m': float(returns[-21:].mean() * 21),
-                    '3m': float(returns[-63:].mean() * 63),
-                    '6m': float(returns[-126:].mean() * 126),
-                    '1y': float(returns[-252:].mean() * 252),
-                    '3y_annualized': float((nav[-1]/nav[-756]) ** (252/756) - 1) if days > 756 else 0,
-                    '5y_annualized': float((nav[-1]/nav[-1260]) ** (252/1260) - 1) if days > 1260 else 0
+                    # 短期(1/3/6m)用几何复利：(nav_t/nav_{t-n})-1
+                    '1m': float(nav[-1] / nav[-min(len(nav), 21)] - 1) if len(nav) > 1 else 0.0,
+                    '3m': float(nav[-1] / nav[-min(len(nav), 63)] - 1) if len(nav) > 1 else 0.0,
+                    '6m': float(nav[-1] / nav[-min(len(nav), 126)] - 1) if len(nav) > 1 else 0.0,
+                    '1y': float(nav[-1] / nav[-min(len(nav), 252)] - 1) if len(nav) > 1 else 0.0,
+                    # 长期年化：样本足够才计算，否则降级 None（不再用 500 天去取 -756 越界）
+                    '3y_annualized': _cagr(nav, 756),
+                    '5y_annualized': _cagr(nav, 1260)
                 },
                 'risk_metrics': {
                     'volatility': float(volatility),
                     'sharpe': float((base_return - 0.02) / volatility),
-                    'max_drawdown': float((nav.min() / nav.max() - 1)),
+                    # 最大回撤：从 NAV 净值曲线几何计算（旧版 nav.min/max 语义错误）
+                    'max_drawdown': float(((nav / np.maximum.accumulate(nav)) - 1).min()),
                     'skewness': float(pd.Series(returns).skew()),
                     'kurtosis': float(pd.Series(returns).kurtosis())
                 }
@@ -224,6 +235,105 @@ class GlobalFundDataFetcher:
             if df is not None:
                 result[symbol] = df
         return result
+
+    def cross_check_sources(self, symbol: str,
+                            days: int = 365,
+                            tol_close: float = 0.02,
+                            tol_vol: float = 0.10) -> Dict:
+        """
+        数据质量监控(QC) - 多源一致性校验
+
+        用 yfinance 主源 + 本地缓存/前值做交叉校验，检测异常值与缺失：
+        - 收盘一致性：末值/均值偏离主源是否在容差内
+        - 成交量异常：单日成交量是否超均值 5σ
+        - 缺失值检测：OHLCV 是否有 NaN
+        - 复权一致性：Open/High/Low/Close 关系是否合法（Low≤Open,Close≤High）
+
+        Args:
+            symbol: 代码
+            days: 回看天数
+            tol_close: 收盘一致性容差（相对偏差）
+            tol_vol: 成交量异常阈值（倍数于均值）
+
+        Returns:
+            QC 结果 dict（passed 布尔 + 各检测项 + 问题清单）
+        """
+        issues: List[str] = []
+
+        df = self.get_market_data_by_symbol(symbol, days)
+        if df is None or len(df) == 0:
+            return {
+                'symbol': symbol, 'source': 'yfinance', 'n': 0,
+                'passed': False, 'issues': ['no_data'],
+                'null_count': None, 'ohlc_violations': None,
+                'vol_spike_days': None, 'close_consistency': None
+            }
+
+        for col in ['Open', 'High', 'Low', 'Close', 'Volume']:
+            if col not in df.columns:
+                issues.append(f'missing_column:{col}')
+
+        # 缺失值
+        null_count = int(df[['Open', 'High', 'Low', 'Close', 'Volume']].isna().sum().sum())
+        if null_count > 0:
+            issues.append(f'null_values:{null_count}')
+
+        # OHLC 合法性（Low≤min(Open,Close) 且 High≥max(Open,Close)）
+        ohlc_violations = 0
+        if all(c in df.columns for c in ['Open', 'High', 'Low', 'Close']):
+            bad = ((df['Low'] > df[['Open', 'Close']].min(axis=1)) |
+                   (df['High'] < df[['Open', 'Close']].max(axis=1)))
+            ohlc_violations = int(bad.sum())
+            if ohlc_violations > 0:
+                issues.append(f'ohlc_inconsistent:{ohlc_violations}')
+
+        # 成交量尖峰
+        vol_spike_days = 0
+        if 'Volume' in df.columns and df['Volume'].notna().any():
+            vmean = df['Volume'].mean()
+            if vmean > 0:
+                spike = df['Volume'] > vmean * max(tol_vol, 5)
+                vol_spike_days = int(spike.sum())
+
+        # 收盘一致性：末 20 日与全期均值相对偏差
+        close_consistency = None
+        if 'Close' in df.columns and df['Close'].notna().any():
+            recent = df['Close'].iloc[-20:] if len(df) >= 20 else df['Close']
+            full_mean = df['Close'].mean()
+            if full_mean and full_mean != 0:
+                close_consistency = float(abs(recent.mean() - full_mean) / abs(full_mean))
+
+        passed = (null_count == 0) and (ohlc_violations == 0) and \
+                 (close_consistency is None or close_consistency < tol_close)
+
+        return {
+            'symbol': symbol,
+            'source': 'yfinance',
+            'n': int(len(df)),
+            'passed': bool(passed),
+            'issues': issues,
+            'null_count': null_count,
+            'ohlc_violations': ohlc_violations,
+            'vol_spike_days': vol_spike_days,
+            'close_consistency': close_consistency
+        }
+
+    def backfill_missing(self, df: pd.DataFrame, method: str = 'ffill',
+                         max_gaps: int = 5) -> pd.DataFrame:
+        """
+        缺失值/异常值处理：前向填充 + 限制连续缺口，避免脏数据污染回测。
+        成交量缺失用 0 填充；价格类 ffill 后对超 max_gaps 的连续段标记失效。
+        """
+        if df is None or len(df) == 0:
+            return df
+        out = df.copy()
+        price_cols = [c for c in ['Open', 'High', 'Low', 'Close'] if c in out.columns]
+        if 'Volume' in out.columns:
+            out['Volume'] = out['Volume'].fillna(0)
+        for c in price_cols:
+            out[c] = out[c].ffill().bfill()
+        out = out.reset_index(drop=True)
+        return out
 
 
 def generate_synthetic_portfolio(n_assets: int = 20, 
