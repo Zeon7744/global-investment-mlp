@@ -143,7 +143,6 @@ class TestDataFetcher(unittest.TestCase):
         self.assertEqual(portfolio.shape[1], 10)
 
     def test_fund_returns_compound_and_degrade(self):
-        """原理层：returns 用几何复利；长期样本不足时降级 None 而非越界/0"""
         fetcher = GlobalFundDataFetcher()
         # days=500 < 756，旧版 nav[-756] 会 IndexError；新版应降级 None
         funds = fetcher.generate_fund_data('hedge', n_funds=3, days=500)
@@ -179,6 +178,48 @@ class TestDataFetcher(unittest.TestCase):
         self.assertEqual(out['Volume'].iloc[1], 0)      # volume 填 0
         self.assertFalse(out[['Open','High','Low','Close','Volume']].isna().any().any())
 
+
+
+class TestPortfolioBacktest(unittest.TestCase):
+    """P0：组合层面 基准相对收益/IR、月度再平衡(带换手成本)、风险平价权重"""
+
+    def _asset_returns(self, n_days=500, n_assets=4, seed=1):
+        np.random.seed(seed)
+        return pd.DataFrame(
+            np.random.normal(0.001, 0.01, size=(n_days, n_assets)),
+            index=pd.date_range('2020-01-01', periods=n_days, freq='B'),
+            columns=[f'a{i}' for i in range(n_assets)])
+
+    def test_risk_parity_weights_sane(self):
+        from portfolio_backtest import risk_parity_weights
+        vols = np.array([0.015, 0.02, 0.025, 0.03, 0.04, 0.045, 0.05, 0.055])
+        corr = np.ones((8, 8)) * 0.4
+        np.fill_diagonal(corr, 1.0)
+        cov = np.outer(vols, vols) * corr
+        w = risk_parity_weights(cov)
+        self.assertAlmostEqual(float(w.sum()), 1.0, places=6)
+        self.assertTrue((w >= 0).all())
+        self.assertLess(w.max(), 0.5)
+        # 低波动资产权重应不低于高波动资产（RP 核心语义）
+        self.assertGreaterEqual(w[0], w[-1])
+
+    def test_monthly_rebalance_with_cost(self):
+        from portfolio_backtest import monthly_rebalance_backtest
+        res = monthly_rebalance_backtest(self._asset_returns(), rebalance_cost_bps=10.0)
+        self.assertGreater(res['rebalanced']['final_equity'], 0)
+        self.assertGreater(res['buy_hold_equal']['final_equity'], 0)
+        self.assertEqual(res['rebalance_cost_bps'], 10.0)
+
+    def test_excess_return_and_ir(self):
+        from portfolio_backtest import excess_return_and_ir
+        np.random.seed(1)
+        pr = np.random.normal(0.002, 0.01, 500)
+        br = np.random.normal(0.001, 0.01, 500)
+        out = excess_return_and_ir(pr, br, risk_free_annual=0.02)
+        self.assertIn('information_ratio', out)
+        self.assertIn('excess_return_annual', out)
+        self.assertIn('tracking_error_annual', out)
+        self.assertIn('portfolio_annual', out)
 
 class TestReportGenerator(unittest.TestCase):
     """报告生成测试"""
