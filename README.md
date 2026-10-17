@@ -84,3 +84,15 @@ python main.py --market us --factor momentum
 ---
 
 *由 [Zeon7744](https://github.com/Zeon7744) 维护 · 量化投资 · 三平台同步*
+
+---
+
+## 🚀 免费 → Pro → 企业（变现入口）
+
+免费=每日多因子报告；Pro=全市场信号+风控；企业=私有 ML 部署
+
+- **免费**：立即 [安装/克隆] 使用，命中配额即可升级。
+- **Pro**：[Gitee Pro 订阅](https://gitee.com/Zeon7744) 解锁高级能力。
+- **企业**：私有部署 / 定制需求 → 见 `pricing.md`，或联系商务（GitHub Issues / Gitee）。
+
+> 详细定价与 SKU 见 [pricing.md](pricing.md) ｜ 支持项目见 [FUNDING.yml](FUNDING.yml)
