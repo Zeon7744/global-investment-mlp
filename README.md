@@ -89,13 +89,13 @@ python main.py --market us --factor momentum
 
 ## 🚀 免费 → Pro → 企业（变现入口）
 
-免费=每日多因子报告；Pro=全市场信号+风控；企业=私有 ML 部署
+免费=每日多因子报告；Pro=¥199/月（全市场信号+风控）；企业=¥1999/月（私有 ML 部署）
 
 - **免费**：立即 [安装/克隆] 使用，命中配额即可升级。
-- **Pro**：[Gitee Pro 订阅](https://gitee.com/Zeon7744) 解锁高级能力。
-- **企业**：私有部署 / 定制需求 → 见 `pricing.md`，或联系商务（GitHub Issues / Gitee）。
+- **Pro（¥199/月）**：[爱发电订阅](https://afdian.net/@Zeon7744) 解锁高级能力。
+- **企业（¥1999/月）**：私有部署 / 定制需求 → [联系商务](https://afdian.net/@Zeon7744)。
 
-> 详细定价与 SKU 见 [pricing.md](pricing.md) ｜ 支持项目见 [FUNDING.yml](FUNDING.yml)
+> 详细定价见 [pricing.md](pricing.md) | 🎁 crypto+global 套餐 ¥299/月
 
 ---
 
@@ -107,7 +107,7 @@ python3 -m pip install -r requirements.txt
 
 ## 变现路径
 研究仓，变现路径=开源背书→量化内容输出→咨询/课程（非代码直接售卖）。
-> 定价与赞助：见仓库内 pricing.md / FUNDING.yml（若有）。
+> 定价：见 [pricing.md](pricing.md) | 订阅：[爱发电 @Zeon7744](https://afdian.net/@Zeon7744)
 
 ---
 
@@ -119,3 +119,20 @@ python3 -m pip install -r requirements.txt
 - **使用边界**：仅可用于研究与学习，不得用于违反当地金融监管法规的用途。
 
 > 发布产物 / 付费门 / 法控总览：见 `DISTRIBUTION.md`
+
+
+---
+
+## 💰 订阅支持
+
+| 档位 | 价格 | 核心权益 |
+|------|------|----------|
+| 免费 | ¥0 | 每日多因子报告 |
+| Pro | ¥199/月 | 全市场信号 + 风控模型 |
+| 企业 | ¥1999/月 | 私有 ML 部署 + 定制因子 |
+
+🎁 **量化套餐**：crypto-mlp Pro + global-investment Pro = **¥299/月**（省 ¥89）
+
+👉 **[立即订阅 — 爱发电](https://afdian.net/@Zeon7744)**（支付宝 / 微信支付）
+
+> 详细定价见 [pricing.md](pricing.md)
