@@ -1,5 +1,11 @@
 # global-investment-mlp
 
+## 💰 价值主张 & 定价
+> **能卖什么**：多资产配置投资模型 — 四因子量化信号 + VaR/CVaR 压力测试，美股/港股/加密货币一键切换，每日多因子 HTML 报告。
+>
+> **定价**：免费（每日报告 3 份/月）/ **Pro 授权 ¥99/次**（完整源码 + 全市场信号 + 风控模型）/ **企业 ¥1999/月**（私有 ML 部署 + 定制因子 + API）。付费渠道：[爱发电 @Zeon7744](https://afdian.net/@Zeon7744)。⚠️ 本工具不构成投资建议，仅供研究学习。
+
+
 > 多因子量化投资框架 — 四因子模型 · VaR/压力测试 · HTML报告
 
 [![GitHub Stars](https://img.shields.io/github/stars/Zeon7744/global-investment-mlp?style=social)](https://github.com/Zeon7744/global-investment-mlp)
