@@ -18,6 +18,14 @@ from pathlib import Path
 from datetime import datetime
 import numpy as np
 import pandas as pd
+import os
+
+# 收款层 + 门控
+try:
+    import billing
+except ImportError:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import billing
 
 # 导入模块
 from core_analyzer import GlobalInvestmentAnalyzer, FundType
