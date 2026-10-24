@@ -3,7 +3,7 @@
 ## 💰 价值主张 & 定价
 > **能卖什么**：多资产配置投资模型 — 四因子量化信号 + VaR/CVaR 压力测试，美股/港股/加密货币一键切换，每日多因子 HTML 报告。
 >
-> **定价**：免费（每日报告 3 份/月）/ **Pro 授权 ¥99/次**（完整源码 + 全市场信号 + 风控模型）/ **企业 ¥1999/月**（私有 ML 部署 + 定制因子 + API）。付费渠道：[爱发电 @Zeon7744](https://afdian.net/@Zeon7744)。⚠️ 本工具不构成投资建议，仅供研究学习。
+> **定价**：免费（每日报告 3 份/月）/ **Pro 授权 ¥99/次**（完整源码 + 全市场信号 + 风控模型）/ **企业 ¥1999/月**（私有 ML 部署 + 定制因子 + API）。付费渠道：[面包多 Pay @Zeon7744](https://mbd.net/@Zeon7744)。⚠️ 本工具不构成投资建议，仅供研究学习。
 
 
 > 多因子量化投资框架 — 四因子模型 · VaR/压力测试 · HTML报告
@@ -64,7 +64,7 @@ python main.py --market us --factor momentum
 
 | 平台 | 链接 | 支付方式 |
 |------|------|----------|
-| ☕ **爱发电** | [afdian.com/@Zeon7744](https://afdian.com/@Zeon7744) | 支付宝 / 微信支付 |
+| ☕ **面包多 Pay** | [mbd.com/@Zeon7744](https://mbd.com/@Zeon7744) | 支付宝 / 微信支付 |
 | 🌍 **GitHub Sponsors** | [github.com/sponsors/Zeon7744](https://github.com/sponsors/Zeon7744) | PayPal / Stripe |
 
 ### 赞助档位
@@ -98,8 +98,8 @@ python main.py --market us --factor momentum
 免费=每日多因子报告；Pro=¥199/月（全市场信号+风控）；企业=¥1999/月（私有 ML 部署）
 
 - **免费**：立即 [安装/克隆] 使用，命中配额即可升级。
-- **Pro（¥199/月）**：[爱发电订阅](https://afdian.net/@Zeon7744) 解锁高级能力。
-- **企业（¥1999/月）**：私有部署 / 定制需求 → [联系商务](https://afdian.net/@Zeon7744)。
+- **Pro（¥199/月）**：[面包多 Pay订阅](https://mbd.net/@Zeon7744) 解锁高级能力。
+- **企业（¥1999/月）**：私有部署 / 定制需求 → [联系商务](https://mbd.net/@Zeon7744)。
 
 > 详细定价见 [pricing.md](pricing.md) | 🎁 crypto+global 套餐 ¥299/月
 
@@ -113,7 +113,7 @@ python3 -m pip install -r requirements.txt
 
 ## 变现路径
 研究仓，变现路径=开源背书→量化内容输出→咨询/课程（非代码直接售卖）。
-> 定价：见 [pricing.md](pricing.md) | 订阅：[爱发电 @Zeon7744](https://afdian.net/@Zeon7744)
+> 定价：见 [pricing.md](pricing.md) | 订阅：[面包多 Pay @Zeon7744](https://mbd.net/@Zeon7744)
 
 ---
 
@@ -166,24 +166,24 @@ python3 -m pip install -r requirements.txt
 
 🎁 **量化套餐**：crypto-mlp Pro + global-investment Pro = **¥299/月**（省 ¥89）
 
-👉 **[立即订阅 — 爱发电](https://afdian.net/@Zeon7744)**（支付宝 / 微信支付）
+👉 **[立即订阅 — 面包多 Pay](https://mbd.net/@Zeon7744)**（支付宝 / 微信支付）
 
 > 详细定价见 [pricing.md](pricing.md)
 
 
 ---
 
-## 💛 支持 & 发布（爱发电双通道）
+## 💛 支持 & 发布（面包多 Pay双通道）
 
-本仓通过**爱发电**完成「**创作者赞赏/订阅收款**」与「**作品/内容社区发布**」双通道运营，二者共存：
+本仓通过**面包多 Pay**完成「**创作者赞赏/订阅收款**」与「**作品/内容社区发布**」双通道运营，二者共存：
 
 | 通道 | 用途 | 入口 |
 |------|------|------|
-| 💰 爱发电收款 | 赞赏、订阅、Pro 会员、赞助维护 | [爱发电 @Zeon7744](https://afdian.net/@Zeon7744) |
-| 📣 爱发电社区发布 | 作品展示、内容连载、粉丝互动、发布分发 | [爱发电社区 @Zeon7744](https://afdian.com/user/0c59dda8a1bb11f19b9552540025c377) |
+| 💰 面包多 Pay收款 | 赞赏、订阅、Pro 会员、赞助维护 | [面包多 Pay @Zeon7744](https://mbd.net/@Zeon7744) |
+| 📣 面包多 Pay社区发布 | 作品展示、内容连载、粉丝互动、发布分发 | [面包多 Pay社区 @Zeon7744](https://mbd.com/user/0c59dda8a1bb11f19b9552540025c377) |
 
 - **收款**：赞赏 / 订阅 Pro / 企业赞助，支付宝 + 微信支付，无需备案域名
-- **社区发布**：把本仓产出（作品 / 剧本 / 工具演示 / 案例）在爱发电社区连载发布，沉淀粉丝、引流回仓
+- **社区发布**：把本仓产出（作品 / 剧本 / 工具演示 / 案例）在面包多 Pay社区连载发布，沉淀粉丝、引流回仓
 - 两通道独立共存，按需选用；收款不强制绑定社区发布
 
 > 本仓内容仅供创作参考，发布前请完成人工合规审查与平台备案。
@@ -204,8 +204,8 @@ python3 -m pip install -r requirements.txt
 
 | 方式 | 入口 | 说明 |
 |------|------|------|
-| 社区评论 | [爱发电社区 @Zeon7744](https://afdian.com/user/0c59dda8a1bb11f19b9552540025c377) | 作品下评论/留言，直接驱动迭代 |
+| 社区评论 | [面包多 Pay社区 @Zeon7744](https://mbd.com/user/0c59dda8a1bb11f19b9552540025c377) | 作品下评论/留言，直接驱动迭代 |
 | Issue | 本仓 GitHub / Gitee / GitCode 的 Issues | Bug / 功能建议 / 定价反馈 |
-| 赞赏反馈 | 爱发电赞赏留言 | 支持的同时留下使用心得 |
+| 赞赏反馈 | 面包多 Pay赞赏留言 | 支持的同时留下使用心得 |
 
 > 每一条回馈都是产品优化的第一手依据。不强制，但真诚欢迎。

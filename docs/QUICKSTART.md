@@ -15,5 +15,5 @@ python test_all.py        # 全量测试
 
 ## 3. 收款与门控
 - 免费版 3 份/月；Pro ¥199/月；企业 ¥1999/月
-- 爱发电：https://afdian.com/@Zeon7744
+- 面包多 Pay：https://mbd.com/@Zeon7744
 - 冒烟：`bash smoke_test.sh`
