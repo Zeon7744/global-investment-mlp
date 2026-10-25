@@ -8,3 +8,4 @@ data/*.csv
 
 # 敏感配置
 .env
+praise_ledger.jsonl
